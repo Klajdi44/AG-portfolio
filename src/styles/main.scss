@@ -1,2 +1,4 @@
 @use '../App.scss'; 
-@use '../index.scss'
+@use '../index.scss';
+@use '../components/Nav/Nav.scss';
+@import 'antd/dist/antd.css';

@@ -1,0 +1,111 @@
+	@import '../../styles/mixins.scss';
+	.nav{
+		top: 0;
+		right: 0;
+		height: 100vh;
+		width: 200px;
+		position: fixed;
+		animation: slide .5s ease;
+		background-color: #fff;
+		border-left: 1px solid rgba(128, 128, 128, 0.519);
+		@include mediaQuery(laptop){
+    height: 80px;
+ 
+		}
+
+		&-ul{
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		position: relative;
+		height: 35%;
+		padding-top: 50px;
+		
+		.nav-ul-items{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			height: 100%;
+
+			@include mediaQuery(laptop){
+			padding:1em ;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			width: 50%;
+			max-width: 650px; 
+			height: max-content;
+	    }			
+		}
+		
+		.logo{
+			display: none;
+			background: red;
+			img{
+  max-width: 40px;
+	background-color: #000;
+
+			}
+
+		}
+
+		@include mediaQuery(phone){
+			height: 40%;
+		}
+
+		@include mediaQuery(laptop){
+     	padding:1em ;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			width: 100%; 
+			height: max-content;
+
+			.logo{
+				display: block;
+			}
+			
+		}
+
+		&-li{
+			cursor: pointer;
+
+			&-select{
+				text-align:start;
+			}
+		}
+		} 
+
+		&-close{
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		font-size: 18px;
+		z-index: 1;
+		@include mediaQuery(laptop){
+			display:none
+		}
+		}
+	}
+
+	.nav-open{
+	@include mediaQuery(laptop){
+		top: 0;
+		right: 0;
+		width: 100%;
+	}}
+
+	.nav-closed{
+		display: none;
+	}
+
+	@keyframes slide{
+	from{
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	}
+
