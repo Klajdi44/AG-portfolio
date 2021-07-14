@@ -1,30 +1,28 @@
-import React, { useState } from 'react'
-import { app } from './firebaseApp'
+import React, { useState } from 'react';
+import { app } from './firebaseApp';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { getTranslations } from './translations/getTranslation';
 import Nav from './components/Nav/Nav';
 
 
 function App() {
   const [lang, setLange] = useState('en');
-  const [opened, setOpened] = useState(false)
-  const [showNavClose, setShowNavClose] = useState(true);
+  const [opened, setOpened] = useState(false);
+
   const testCollection = app.firestore().collection('test');
-  const dbQuery = testCollection.where('lang', '==', lang)
+  const dbQuery = testCollection.where('lang', '==', lang);
   const [data, loading, error] = useCollectionData(dbQuery, {
     idField: 'id',
   });
 
-
   function handleChange(selectedLang: string) {
-    setLange(selectedLang)
+    setLange(selectedLang);
   }
   function closeNav() {
-    setOpened(!opened)
+    setOpened(!opened);
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       {/* <details>
         <summary> Language</summary>
         <button onClick={() => handleChange('en')}>English</button>
@@ -42,10 +40,9 @@ function App() {
           {opened ? 'X' : '='}
         </div>
         <Nav isOpened={opened} setOpened={setOpened} />
-
       </header>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

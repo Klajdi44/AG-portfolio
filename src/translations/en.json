@@ -1,4 +1,6 @@
 {
+	"home":"Home",
+	"contact":"Contact",
 	"portfolio": "Portfolio",
-	"aboutme": "About me"
+	"aboutMe": "About me"
 }
