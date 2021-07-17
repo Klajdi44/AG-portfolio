@@ -1,45 +1,33 @@
 import React, { useState } from 'react';
 import { app } from './firebaseApp';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import Nav from './components/Nav/Nav';
+import LandingPage from './components/LandingPage/LandingPage';
 
 
 function App() {
-  const [lang, setLange] = useState('en');
   const [opened, setOpened] = useState(false);
+  const [images, landingLoading, landingError] = useCollection(
+    app.firestore().collection('landing-page-img'),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    }
+  );
+  const landingImages = images?.docs.map(doc => doc.data()?.images)
 
-  const testCollection = app.firestore().collection('test');
-  const dbQuery = testCollection.where('lang', '==', lang);
-  const [data, loading, error] = useCollectionData(dbQuery, {
-    idField: 'id',
-  });
-
-  function handleChange(selectedLang: string) {
-    setLange(selectedLang);
-  }
   function closeNav() {
     setOpened(!opened);
   }
 
   return (
     <div className='App'>
-      {/* <details>
-        <summary> Language</summary>
-        <button onClick={() => handleChange('en')}>English</button>
-        <button onClick={() => handleChange('pl')}>Polish</button>
-      </details>
-
-      <h1> {getTranslations(lang, 'portfolio')}</h1>
-      <h1> {getTranslations(lang, 'aboutme')}</h1>
-
-      {loading && <div>Loading </div>}
-      {data && <div> {data[0].aboutMe}</div>} */}
-
       <header>
         <div className='nav-close' onClick={closeNav}>
           {opened ? 'X' : '='}
         </div>
         <Nav isOpened={opened} setOpened={setOpened} />
+
+        <LandingPage landingImages={landingImages} landingLoading={landingLoading} ladingError={landingError} />
       </header>
     </div>
   );

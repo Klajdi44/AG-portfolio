@@ -8,8 +8,11 @@
 		animation: slide .5s ease;
 		background-color: #fff;
 		border-left: 1px solid rgba(128, 128, 128, 0.519);
+		z-index: 1;
 		@include mediaQuery(laptop){
     height: 80px;
+		background-color: transparent;
+		color: #fff;
  
 		}
 
@@ -84,7 +87,7 @@
 		top: 20px;
 		right: 20px;
 		font-size: 18px;
-		z-index: 1;
+		z-index: 2;
 		@include mediaQuery(laptop){
 			display:none
 		}

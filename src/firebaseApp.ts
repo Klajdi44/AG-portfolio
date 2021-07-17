@@ -14,3 +14,11 @@ const firebaseConfig = {
 
 export const app = firebase.default.initializeApp(firebaseConfig);
 app.analytics();
+
+// import { useCollectionData, useCollection } from 'react-firebase-hooks/firestore';
+
+ // const testCollection = app.firestore().collection('test');
+  // const dbQuery = testCollection.where('lang', '==', lang);
+  // const [data, loading, error] = useCollectionData(dbQuery, {
+  //   idField: 'id',
+  // });
