@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Select } from 'antd';
 import gsap from 'gsap';
 import logo from '../../images/logo.png';
@@ -13,6 +13,8 @@ export default function Nav({ isOpened, setOpened }: Props) {
   const { Option } = Select;
   const [duration, setDuration] = useState(0.2);
   const [language, setLanguage] = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+  const NavUl = useRef(null);
 
   useEffect(() => {
     window.onresize = () => {
@@ -33,7 +35,7 @@ export default function Nav({ isOpened, setOpened }: Props) {
     gsap.fromTo(
       '.nav-ul-li',
       { opacity: 0, x: 100 + '%' },
-      { opacity: 1, x: 0 + '%', stagger: 0.1, duration: duration }
+      { opacity: 1, x: 0 + '%', duration: duration }
     );
   }, [isOpened]);
 
@@ -41,10 +43,21 @@ export default function Nav({ isOpened, setOpened }: Props) {
     setLanguage(value);
   }
 
+  window.addEventListener('scroll', () => {
+    if (
+      window.matchMedia('(min-width: 1024px)').matches &&
+      window.scrollY > 10
+    ) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  });
+
   return (
     <>
       <nav className={`nav ${isOpened ? 'nav-open' : 'nav-closed'}`}>
-        <ul className='nav-ul'>
+        <ul className={`nav-ul ${scrolled && 'scrolling'}`} ref={NavUl}>
           <li className='logo'>
             <img src={logo} alt='Logo' />
           </li>

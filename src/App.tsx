@@ -4,7 +4,6 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import Nav from './components/Nav/Nav';
 import LandingPage from './components/LandingPage/LandingPage';
 
-
 function App() {
   const [opened, setOpened] = useState(false);
   const [images, landingLoading, landingError] = useCollection(
@@ -13,7 +12,7 @@ function App() {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
-  const landingImages = images?.docs.map(doc => doc.data()?.images)
+  const landingImages = images?.docs.map(doc => doc.data()?.images);
 
   function closeNav() {
     setOpened(!opened);
@@ -27,7 +26,12 @@ function App() {
         </div>
         <Nav isOpened={opened} setOpened={setOpened} />
 
-        <LandingPage landingImages={landingImages} landingLoading={landingLoading} ladingError={landingError} />
+        <LandingPage
+          landingImages={landingImages}
+          landingLoading={landingLoading}
+          ladingError={landingError}
+        />
+        <section style={{ height: '100vh' }}></section>
       </header>
     </div>
   );

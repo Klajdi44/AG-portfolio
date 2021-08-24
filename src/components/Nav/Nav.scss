@@ -1,114 +1,116 @@
-	@import '../../styles/mixins.scss';
-	.nav{
-		top: 0;
-		right: 0;
-		height: 100vh;
-		width: 200px;
-		position: fixed;
-		animation: slide .5s ease;
-		background-color: #fff;
-		border-left: 1px solid rgba(128, 128, 128, 0.519);
-		z-index: 1;
-		@include mediaQuery(laptop){
+@import '../../styles/mixins.scss';
+.nav {
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  animation: slide 0.5s ease;
+  background-color: #fff;
+  border-left: 1px solid rgba(128, 128, 128, 0.519);
+  z-index: 100;
+  @include mediaQuery(laptop) {
     height: 80px;
-		background-color: transparent;
-		color: #fff;
- 
-		}
+    background-color: transparent;
+    color: #fff;
+  }
 
-		&-ul{
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: flex-start;
-		position: relative;
-		height: 35%;
-		padding-top: 50px;
-		
-		.nav-ul-items{
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			align-items: flex-start;
-			height: 100%;
+  &-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    height: 35%;
+    padding-top: 50px;
 
-			@include mediaQuery(laptop){
-			padding:1em ;
-			flex-direction: row;
-			justify-content: space-around;
-			align-items: center;
-			width: 50%;
-			max-width: 650px; 
-			height: max-content;
-	    }			
-		}
-		
-		.logo{
-			display: none;
-			background: red;
-			img{
-  max-width: 40px;
-	background-color: #000;
+    .nav-ul-items {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 100%;
 
-			}
+      @include mediaQuery(laptop) {
+        padding: 1em;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%;
+        max-width: 650px;
+        height: max-content;
+      }
+    }
 
-		}
+    .logo {
+      display: none;
+      background: red;
+      img {
+        max-width: 40px;
+        background-color: #000;
+      }
+    }
 
-		@include mediaQuery(phone){
-			height: 40%;
-		}
+    @include mediaQuery(phone) {
+      height: 40%;
+    }
 
-		@include mediaQuery(laptop){
-     	padding:1em ;
-			flex-direction: row;
-			justify-content: space-around;
-			align-items: center;
-			width: 100%; 
-			height: max-content;
+    @include mediaQuery(laptop) {
+      padding: 1em;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: max-content;
 
-			.logo{
-				display: block;
-			}
-			
-		}
+      .logo {
+        display: block;
+      }
+    }
 
-		&-li{
-			cursor: pointer;
+    &-li {
+      cursor: pointer;
 
-			&-select{
-				text-align:start;
-			}
-		}
-		} 
+      &-select {
+        text-align: start;
+      }
+    }
+  }
 
-		&-close{
-		position: fixed;
-		top: 20px;
-		right: 20px;
-		font-size: 18px;
-		z-index: 2;
-		@include mediaQuery(laptop){
-			display:none
-		}
-		}
-	}
+  &-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    z-index: 101;
+    cursor: pointer;
+    @include mediaQuery(laptop) {
+      display: none;
+    }
+  }
+}
 
-	.nav-open{
-	@include mediaQuery(laptop){
-		top: 0;
-		right: 0;
-		width: 100%;
-	}}
+.nav-open {
+  @include mediaQuery(laptop) {
+    top: 0;
+    right: 0;
+    width: 100%;
+  }
+}
 
-	.nav-closed{
-		display: none;
-	}
+.nav-closed {
+  display: none;
+}
 
-	@keyframes slide{
-	from{
-		opacity: 0;
-		transform: translateX(100%);
-	}
-	}
-
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+.scrolling {
+  background: #fff;
+  color: #000;
+  transition: 0.1s ease-out;
+}
